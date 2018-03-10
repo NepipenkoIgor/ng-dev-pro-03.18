@@ -1,21 +1,24 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
+import {debounce} from './header/header.component';
+import {users$} from './users';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  interpolation: ['[', ']']
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  public logo = 'assets/ng-logo.png';
+  public width = '50';
+  public placeholder = 'Search me';
 
-  public k = 0.3;
-  public base = 2000;
+  public users$ = users$;
 
-  private _money = 3000;
-
-  public calc(): number {
-    return this._money * this.k;
+  constructor() {
   }
 
+  @debounce(500)
+  public onInput(event: KeyboardEvent): void {
+    console.log((event.target as HTMLInputElement).value);
+  }
 }

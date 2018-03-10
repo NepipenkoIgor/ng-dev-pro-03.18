@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">My App
-  <img [attr.src]="logo" [style.width.px]="width" alt="">
-  <app-search [placeholder]="placeholder" (searchSequence)="text = $event"></app-search>
+  <!--<ng-content ></ng-content>-->
+  <div #toolbar></div>
+  <!--<ng-content select="img"></ng-content>-->
 </mat-toolbar>
-{{text}}
