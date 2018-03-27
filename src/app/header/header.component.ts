@@ -1,4 +1,7 @@
-import {AfterContentInit, Component, ContentChild, ElementRef, OnInit, TemplateRef, ViewChild, ViewContainerRef} from '@angular/core';
+import {
+  AfterContentInit, Component, ContentChild, ElementRef, InjectionToken, OnInit, TemplateRef, ViewChild,
+  ViewContainerRef
+} from '@angular/core';
 
 export function debounce(ms: number) {
   return (target: any, propertyKey: string, descriptor: any) => {
@@ -16,11 +19,15 @@ export function debounce(ms: number) {
   };
 }
 
+export const MY_TOKEN = new InjectionToken('MY_TOKEN');
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  viewProviders: [
+    {provide: MY_TOKEN, useValue: 'my value'}
+  ]
 })
 export class HeaderComponent implements OnInit, AfterContentInit {
 

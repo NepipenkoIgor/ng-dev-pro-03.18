@@ -1,0 +1,34 @@
+mat-card {
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 0 10px;
+}
+
+.name, .position {
+  margin: 0 10px;
+}
+
+.background {
+  background-color: gray;
+}
+
+.tooltip-container .tooltip {
+  position: absolute;
+  top: -15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  display: none;
+  line-height: 20px;
+  margin: 10px 0;
+  padding: 05px;
+}
+
+.tooltip-container .tooltip.tooltip-active {
+  display: block;
+}

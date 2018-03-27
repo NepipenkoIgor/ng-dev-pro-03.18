@@ -1,0 +1,11 @@
+<div *ngIf="users$ | async as users; else loading">
+  <app-card *ngFor="let user of users | userFilter:text; let i = index; odd as isOdd"
+            [position]="i+1"
+            [user]="user" [isOdd]="isOdd"
+            [routerLink]="['/users', user.id]"
+  ></app-card>
+</div>
+
+<ng-template #loading>
+  ...loading
+</ng-template>

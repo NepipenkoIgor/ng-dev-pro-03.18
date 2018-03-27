@@ -1,24 +1,22 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {debounce} from './header/header.component';
-import {users$} from './users';
+import {UsersService} from './common/services/users.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: []
 })
 export class AppComponent {
   public logo = 'assets/ng-logo.png';
   public width = '50';
   public placeholder = 'Search me';
 
-  public users$ = users$;
-
-  constructor() {
-  }
-
-  @debounce(500)
-  public onInput(event: KeyboardEvent): void {
-    console.log((event.target as HTMLInputElement).value);
+  public constructor(private _router: Router) {
+    // setTimeout(() => {
+    //   this._router.navigate(['info']);
+    // }, 5000);
   }
 }

@@ -13,7 +13,6 @@ export class UserFilterPipe implements PipeTransform {
       return `${user.firstName.toLowerCase()} ${user.surname.toLowerCase()}`
         .includes(searchTerm.toLowerCase());
     });
-    return null;
   }
 
 }

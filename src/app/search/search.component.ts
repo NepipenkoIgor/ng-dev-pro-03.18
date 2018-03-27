@@ -1,4 +1,6 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, Inject, Optional} from '@angular/core';
+import {MY_TOKEN} from '../header/header.component';
+import {SearchService} from '../common/services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -10,11 +12,9 @@ export class SearchComponent implements OnInit {
   @Input()
   public placeholder;
 
-  @Output()
-  public searchSequence = new EventEmitter();
-
-  constructor() {
-    console.log(1, this.placeholder);
+  constructor(@Optional() @Inject(MY_TOKEN) private _token: string,
+              private _searchService: SearchService) {
+    console.log('Search', this._token);
   }
 
   ngOnInit() {
@@ -23,6 +23,10 @@ export class SearchComponent implements OnInit {
 
   public onFocus(event: any) {
     console.log(event);
+  }
+
+  public onSearch(term: string) {
+    this._searchService.search = term;
   }
 
 }

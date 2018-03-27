@@ -5,19 +5,12 @@
   </ng-template>
   <ng-template #search>
     <app-search
-      [placeholder]="placeholder"
-      (searchSequence)="text = $event"></app-search>
+      [placeholder]="placeholder"></app-search>
   </ng-template>
 
 </app-header>
-<div *ngIf="users$ | async as users; else loading">
-  <app-card *ngFor="let user of users | userFilter:text; let i = index; odd as isOdd"
-            [position]="i+1"
-            [user]="user" [isOdd]="isOdd"
-  ></app-card>
-</div>
 
-<ng-template #loading>
-  ...loading
-</ng-template>
+<router-outlet></router-outlet>
+
+<app-modal></app-modal>
 

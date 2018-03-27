@@ -1,0 +1,16 @@
+input.ng-invalid {
+  border: 1px solid red;
+}
+input.ng-valid {
+  border: 1px solid green;
+}
+
+.password.ng-pending input {
+  border: 1px solid orange;
+}
+.password.ng-invalid input {
+  border: 1px solid red;
+}
+.password.ng-valid input {
+  border: 1px solid green;
+}
