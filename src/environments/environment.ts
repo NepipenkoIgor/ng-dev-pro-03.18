@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://learn.javascript.ru/courses/groups/api'
+  baseUrl: 'http://localhost:8090'
 };

@@ -1,0 +1,11 @@
+<div *ngIf="products$ | async as products; else loading">
+  <app-card *ngFor="let product of products | productFilter:text; let i = index; odd as isOdd"
+            [position]="i+1"
+            [product]="product" [isOdd]="isOdd"
+            (click)="openFullCard(product)"
+  ></app-card>
+</div>
+
+<ng-template #loading>
+  ...loading
+</ng-template>

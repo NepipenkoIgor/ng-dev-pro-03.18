@@ -1,5 +1,4 @@
 <mat-form-field>
-  <input matInput [placeholder]="placeholder"
-         (focus)="onFocus(search)" #search
-  (input)="onSearch(search.value)">
+  <input matInput [placeholder]="placeholder" #search
+         (input)="onSearch(search.value)">
 </mat-form-field>

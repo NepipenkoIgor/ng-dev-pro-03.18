@@ -1,0 +1,15 @@
+<div *ngFor="let product of cartProducts$ | async; index as position">
+  <mat-card class="example-card" [ngClass]="{'background': isOdd}">
+    <mat-card-header>
+
+      <div class="position">{{position+1}}</div>
+      <div class="name">{{product.title}}</div>
+      <div class="name">{{product.price * product.count}}</div>
+      <div class="controls">
+        <span (click)="incrementProduct(product)"><i class="far fa-plus-square"></i></span>
+        <span *ngIf="product.count>1" (click)="decrementProduct(product)"><i class="far fa-minus-square"></i></span>
+        <span (click)="removeProduct(product)"><i class="far fa-trash-alt"></i></span>
+      </div>
+    </mat-card-header>
+  </mat-card>
+</div>

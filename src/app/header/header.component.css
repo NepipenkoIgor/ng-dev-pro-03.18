@@ -1,3 +1,9 @@
 .active {
   color: orange;
 }
+mat-toolbar {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}

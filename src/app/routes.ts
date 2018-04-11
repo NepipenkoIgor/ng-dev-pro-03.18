@@ -1,9 +1,8 @@
 import {Route} from '@angular/router';
-import {InfoComponent} from './info/info.component';
-import {UsersComponent} from './users/users.component';
-import {UsersListComponent} from './users/users-list/users-list.component';
-import {UserComponent} from './users/user/user.component';
-import {UserResolveService} from './users/user/user-resolve.service';
+import {ProductsComponent} from './products/products.component';
+import {ProductsListComponent} from './products/products-list/products-list.component';
+import {ProductComponent} from './products/product/product.component';
+import {ProductResolveService} from './products/product/product-resolve.service';
 
 export const routes: Route [] = [
   {
@@ -17,20 +16,20 @@ export const routes: Route [] = [
   },
   {
     path: 'users',
-    component: UsersComponent,
+    component: ProductsComponent,
     children: [
       {
         path: '',
-        component: UsersListComponent
+        component: ProductsListComponent
       },
       {
         path: ':id',
-        component: UserComponent,
+        component: ProductComponent,
         data: {
           title: 'Info about user'
         },
         resolve: {
-          user: UserResolveService
+          user: ProductResolveService
         }
       },
       {

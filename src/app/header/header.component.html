@@ -1,16 +1,19 @@
-<mat-toolbar color="primary">My App
-  <!--<ng-content ></ng-content>-->
+<mat-toolbar color="primary">
   <button mat-button [matMenuTriggerFor]="menu">Menu</button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item
             [routerLink]="['users']"
             routerLinkActive="active"
-    >Users</button>
+    >Users
+    </button>
     <button mat-menu-item
             [routerLink]="['info']"
             routerLinkActive="active"
-    >Info</button>
+    >Info
+    </button>
   </mat-menu>
   <div #toolbar></div>
-  <!--<ng-content select="img"></ng-content>-->
+
+  <app-cart></app-cart>
+
 </mat-toolbar>

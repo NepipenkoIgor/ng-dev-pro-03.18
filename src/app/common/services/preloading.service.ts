@@ -8,9 +8,6 @@ import {delay, mergeMap} from 'rxjs/operators';
 @Injectable()
 export class PreloadingService implements PreloadingStrategy {
 
-  constructor() {
-  }
-
   public preload(route: Route, fn: () => Observable<any>): Observable<any> {
     return of(route).pipe(
       delay(5000),

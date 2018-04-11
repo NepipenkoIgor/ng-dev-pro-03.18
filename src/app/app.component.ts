@@ -1,7 +1,8 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {debounce} from './header/header.component';
-import {UsersService} from './common/services/users.service';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {Store} from '@ngrx/store';
+import {GetProductsPending} from './common/actions/products.action';
+import {GetUserPending} from './common/actions/user.action';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +10,17 @@ import {Router} from '@angular/router';
   styleUrls: ['./app.component.css'],
   providers: []
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public logo = 'assets/ng-logo.png';
   public width = '50';
   public placeholder = 'Search me';
 
-  public constructor(private _router: Router) {
-    // setTimeout(() => {
-    //   this._router.navigate(['info']);
-    // }, 5000);
+  public constructor(private _router: Router,
+                     private _store: Store<any>) {
+  }
+
+  public ngOnInit(): void {
+    this._store.dispatch(new GetProductsPending());
+    this._store.dispatch(new GetUserPending());
   }
 }
