@@ -1,28 +1,50 @@
-import { TestBed, async } from '@angular/core/testing';
+import {async, inject, TestBed} from '@angular/core/testing';
 import {SearchComponent} from './search.component';
+import {SearchService} from '../common/services/search.service';
+import {By} from '@angular/platform-browser';
+import {MatInputModule} from '@angular/material';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
-describe('AppComponent', () => {
-  beforeEach(async(() => {
+class MockSearchService {
+  public set search(value: string) {
+  }
+}
+
+describe('Search component', () => {
+  let fixture;
+  let debugElement;
+  let component;
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
         SearchComponent
       ],
+      imports: [MatInputModule, NoopAnimationsModule],
+      providers: [{provide: SearchService, useClass: MockSearchService}]
     }).compileComponents();
-  }));
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
-  it(`should have as title 'app'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app');
-  }));
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(SearchComponent);
+    debugElement = fixture.debugElement;
+    component = fixture.componentInstance;
+  });
+
+  it('search', async(inject([SearchService],
+    (_searchService: SearchService) => {
+      const text = 'nokia';
+      const spy = spyOnProperty(_searchService, 'search', 'set');
+      const debugInputElement = debugElement.query(By.css('input'));
+      const inputElement = debugInputElement.nativeElement;
+      inputElement.value = text;
+      inputElement.dispatchEvent(new Event('input'));
+      expect(spy).toHaveBeenCalledWith(text);
+    })));
+
+  it('search', async(() => {
+    const placeholder = 'search term';
+    component.placeholder = placeholder;
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!');
+    const debugInputElement = debugElement.query(By.css('input'));
+    const inputElement = debugInputElement.nativeElement;
+    expect(inputElement.getAttribute('placeholder')).toEqual(placeholder);
   }));
 });
+
